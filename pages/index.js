@@ -1,27 +1,29 @@
+import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import AnecdoteList from "@/components/AnecdoteList";
+import AnecdoteForm from "@/components/AnecdoteForm";
+import { useState } from "react";
 
-const index = () => {
+const Home = () => {
+  // const anecdoteById = (id) => anecdotes.find((a) => a.id === id);
+
+  // const vote = (id) => {
+  //   const anecdote = anecdoteById(id);
+
+  //   const voted = {
+  //     ...anecdote,
+  //     votes: anecdote.votes + 1,
+  //   };
+
+  //   setAnecdotes(anecdotes.map((a) => (a.id === id ? voted : a)));
+  // };
+
   return (
-    <>
-      <nav>
-        <ul className="menu-bar">
-          <li>
-            <Link href="/">HOME</Link>
-          </li>
-          <li>
-            <Link href="/about">ABOUT</Link>
-          </li>
-          <li>
-            <Link href="/contact">CONTACT</Link>
-          </li>
-          <li>
-            <Link href="/product">PRODUCT</Link>
-          </li>
-        </ul>
-      </nav>
-      <h1>hellow world</h1>
-    </>
+    <div>
+      <Navbar />
+      <AnecdoteList />
+    </div>
   );
 };
 
-export default index;
+export default Home;
