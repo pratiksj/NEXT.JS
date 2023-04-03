@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 
 const Post = () => {
   const router = useRouter();
-  const { sno } = router.query;
-  return <p>Post:{sno}</p>;
+  const pageNumber = router.query.sno;
+  return <p>Post:{pageNumber}</p>;
 };
 
 export default Post;
