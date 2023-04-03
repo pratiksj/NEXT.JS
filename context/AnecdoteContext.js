@@ -1,24 +1,23 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import anecdoteService from "@/services/anecdote";
 
 const AnecdoteContext = createContext();
 
 export const AnecdoteContextProvider = (props) => {
-  const [anecdotes, setAnecdotes] = useState([
-    {
-      content: "If it hurts, do it more often",
-      author: "Jez Humble",
-      info: "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
-      votes: 0,
-      id: 1,
-    },
-    {
-      content: "Premature optimization is the root of all evil",
-      author: "Donald Knuth",
-      info: "http://wiki.c2.com/?PrematureOptimization",
-      votes: 0,
-      id: 2,
-    },
-  ]);
+  const [anecdotes, setAnecdotes] = useState([]);
+  console.log(anecdotes, "anecdotes from server");
+  useEffect(() => {
+    anecdoteService.getAll().then((anecdote) => setAnecdotes(anecdote));
+    // axios
+    //   .get("http://localhost:3001/anecdotes")
+    //   .then((anecdote) => setAnecdotes(anecdote.data));
+    // const fetchData = async () => {
+    //   const response = await axios.get("http://localhost:3001/anecdotes");
+    //   const data = await response.data;
+    //   setAnecdotes(data);
+    // };
+    // //fetchData();
+  }, []);
 
   return (
     <AnecdoteContext.Provider value={[anecdotes, setAnecdotes]}>
