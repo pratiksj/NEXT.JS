@@ -8,15 +8,6 @@ export const AnecdoteContextProvider = (props) => {
   console.log(anecdotes, "anecdotes from server");
   useEffect(() => {
     anecdoteService.getAll().then((anecdote) => setAnecdotes(anecdote));
-    // axios
-    //   .get("http://localhost:3001/anecdotes")
-    //   .then((anecdote) => setAnecdotes(anecdote.data));
-    // const fetchData = async () => {
-    //   const response = await axios.get("http://localhost:3001/anecdotes");
-    //   const data = await response.data;
-    //   setAnecdotes(data);
-    // };
-    // //fetchData();
   }, []);
 
   return (
