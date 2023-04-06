@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const baseUrl = "/api/anecdotes";
+//const createUrl = "/api/addanecdotes";
 //const baseUrl = "/api/hello";
 
 const getAll = async () => {
@@ -8,4 +9,9 @@ const getAll = async () => {
   return response.data;
 };
 
-export default { getAll };
+const create = async (newObj) => {
+  const response = await axios.post(baseUrl, newObj);
+  return response.data;
+};
+
+export default { getAll, create };

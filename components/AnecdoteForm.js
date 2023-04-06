@@ -1,32 +1,36 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import AnecdoteContext from "@/context/AnecdoteContext";
+import anecdoteService from "@/services/anecdote";
 
 const AnecdoteForm = () => {
+  const [content, setContent] = useState("");
+  const [author, setAuthor] = useState("");
+  const [info, setInfo] = useState("");
   const router = useRouter();
   console.log(router, "this is me router");
   const [anecdotes, setAnecdotes] = useContext(AnecdoteContext);
 
-  const addNew = (anecdote) => {
-    console.log(anecdote, "me anecdote");
-    anecdote.id = Math.round(Math.random() * 10000);
-    setAnecdotes(anecdotes.concat(anecdote));
+  const addNew = async (anecdoteObj) => {
+    //console.log(anecdote, "me anecdote");
+
+    // anecdote.id = Math.round(Math.random() * 10000);
+    const addAnecdote = await anecdoteService.create(anecdoteObj);
+    console.log(addAnecdote, "i added anecdote");
+    setAnecdotes(anecdotes.concat(addAnecdote.data));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const content = event.target.content.value;
-    const author = event.target.author.value;
-    const info = event.target.info.value;
     addNew({
       content,
       author,
       info,
     });
-    event.target.content.value = "";
-    event.target.author.value = "";
-    event.target.info.value = "";
+    setContent("");
+    setAuthor("");
+    setInfo("");
     router.push("/");
   };
   return (
@@ -35,15 +39,33 @@ const AnecdoteForm = () => {
       <form onSubmit={handleSubmit}>
         <div>
           Content:{""}
-          <input name="content" />
+          <input
+            name="content"
+            value={content}
+            onChange={(event) => {
+              setContent(event.target.value);
+            }}
+          />
         </div>
         <div>
           Author:{""}
-          <input name="author" />
+          <input
+            name="author"
+            value={author}
+            onChange={(event) => {
+              setAuthor(event.target.value);
+            }}
+          />
         </div>
         <div>
           Info:{""}
-          <input name="info" />
+          <input
+            name="info"
+            value={info}
+            onChange={(event) => {
+              setInfo(event.target.value);
+            }}
+          />
         </div>
         <button type="submit">create</button>
       </form>
