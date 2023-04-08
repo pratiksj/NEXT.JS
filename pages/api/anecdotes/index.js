@@ -1,7 +1,7 @@
-import dbConnect from "@/middleware/mongoose";
+//import dbConnect from "@/middleware/mongoose";
 import Anecdote from "@/models/Anecdote";
 
-dbConnect();
+//dbConnect();
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req, res) => {
