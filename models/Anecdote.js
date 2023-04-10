@@ -25,6 +25,20 @@ const AnecdoteSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  likes: {
+    type: String,
+    required: true,
+  },
+});
+
+AnecdoteSchema.set("toJSON", {
+  //this is just format
+  transform: (document, returnedObject) => {
+    //returnedObject ma database bata return vako object hunxa
+    returnedObject.id = returnedObject._id.toString();
+    delete returnedObject._id;
+    delete returnedObject.__v;
+  },
 });
 
 //mongoose.models = {};

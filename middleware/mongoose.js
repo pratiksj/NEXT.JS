@@ -1,4 +1,4 @@
-// import handler from "@/pages/api/hello";
+import handler from "@/pages/api/hello";
 // import mongoose from "mongoose";
 // const connection = {};
 

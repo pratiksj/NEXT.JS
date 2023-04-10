@@ -9,23 +9,23 @@ const AnecdoteForm = () => {
   const [author, setAuthor] = useState("");
   const [info, setInfo] = useState("");
   const router = useRouter();
-  console.log(router, "this is me router");
+  //console.log(router, "this is me router");
   const [anecdotes, setAnecdotes] = useContext(AnecdoteContext);
 
   const addNew = async (anecdoteObj) => {
-    //console.log(anecdote, "me anecdote");
+    console.log(anecdoteObj, "me anecdote");
 
     // anecdote.id = Math.round(Math.random() * 10000);
     const addAnecdote = await anecdoteService.create(anecdoteObj);
     console.log(addAnecdote, "i added anecdote");
-    setAnecdotes(anecdotes.concat(addAnecdote.data));
+    //setAnecdotes(anecdotes.concat(addAnecdote.data));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     addNew({
-      content,
       author,
+      content,
       info,
     });
     setContent("");

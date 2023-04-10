@@ -5,7 +5,7 @@ const AnecdoteContext = createContext();
 
 export const AnecdoteContextProvider = (props) => {
   const [anecdotes, setAnecdotes] = useState([]);
-  console.log(anecdotes, "anecdotes from server");
+  //console.log(anecdotes, "anecdotes from server");
   useEffect(() => {
     anecdoteService.getAll().then((anecdote) => setAnecdotes(anecdote.data));
   }, []);

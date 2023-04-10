@@ -10,7 +10,9 @@ const getAll = async () => {
 };
 
 const create = async (newObj) => {
+  console.log(newObj, "i am from create service ");
   const response = await axios.post(baseUrl, newObj);
+  console.log(response, "i am response");
   return response.data;
 };
 
