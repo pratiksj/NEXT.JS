@@ -26,8 +26,7 @@ const AnecdoteSchema = new mongoose.Schema({
     required: true,
   },
   likes: {
-    type: String,
-    required: true,
+    type: Number,
   },
 });
 

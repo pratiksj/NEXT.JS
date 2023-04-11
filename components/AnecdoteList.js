@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 const AnecdoteList = () => {
   const anecdotes = useContext(AnecdoteContext);
-  //console.log(anecdotes[0], "i am coming from context");
+  console.log(anecdotes[0], "i am coming from context");
   const router = useRouter();
 
   return (

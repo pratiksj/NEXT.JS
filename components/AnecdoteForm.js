@@ -18,7 +18,7 @@ const AnecdoteForm = () => {
     // anecdote.id = Math.round(Math.random() * 10000);
     const addAnecdote = await anecdoteService.create(anecdoteObj);
     console.log(addAnecdote, "i added anecdote");
-    //setAnecdotes(anecdotes.concat(addAnecdote.data));
+    setAnecdotes(anecdotes.concat(addAnecdote));
   };
 
   const handleSubmit = (event) => {

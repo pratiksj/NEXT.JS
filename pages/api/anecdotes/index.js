@@ -26,7 +26,8 @@ export default async (req, res) => {
         //   // likes: body.likes,
         // });
         //const newAnecdote = await anecdote.save();
-        res.status(201).json({ success: true, data: anecdote });
+        //res.status(201).json({ success: true, data: anecdote });
+        res.status(201).json(anecdote);
       } catch (error) {
         res.status(400).json({ success: false });
       }
