@@ -9,7 +9,7 @@ const AnecdoteForm = () => {
   const [author, setAuthor] = useState("");
   const [info, setInfo] = useState("");
   const router = useRouter();
-  console.log(router, "this is me router");
+  //console.log(router, "this is me router");
   const [anecdotes, setAnecdotes] = useContext(AnecdoteContext);
 
   const addNew = async (anecdoteObj) => {

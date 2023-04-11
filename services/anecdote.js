@@ -10,6 +10,7 @@ const getAll = async () => {
 };
 
 const create = async (newObj) => {
+  console.log(newObj, "from service folder");
   const response = await axios.post(baseUrl, newObj);
   return response.data;
 };
