@@ -16,18 +16,21 @@ export default async (req, res) => {
       }
       break;
     case "POST":
-      //const body = req.body;
+      const body = req.body;
+      if (!body.likes) {
+        body.likes = 0;
+      }
       try {
-        const anecdote = await Anecdote.create(req.body);
-        // const anecdote = new Anecdote({
-        //   author: body.author,
-        //   content: body.content,
-        //   info: body.info,
-        //   // likes: body.likes,
-        // });
-        //const newAnecdote = await anecdote.save();
+        //const anecdote = await Anecdote.create(req.body);
+        const anecdote = new Anecdote({
+          author: body.author,
+          content: body.content,
+          info: body.info,
+          likes: body.likes,
+        });
+        const newAnecdote = await anecdote.save();
         //res.status(201).json({ success: true, data: anecdote });
-        res.status(201).json(anecdote);
+        res.status(201).json(newAnecdote);
       } catch (error) {
         res.status(400).json({ success: false });
       }
