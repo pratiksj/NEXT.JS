@@ -21,6 +21,17 @@ const AnecdoteList = () => {
       anecdotes[0].map((anecdote) => (anecdote.id === id ? response : anecdote))
     );
   };
+  const removeAnecdote = async (id) => {
+    const anecdoteToRemove = anecdotes[0].find((blog) => blog.id === id);
+    const result = window.confirm(
+      `remove the ${anecdoteToRemove.content}by ${anecdoteToRemove.author}`
+    );
+    if (result) {
+      await anecdoteService.remove(id);
+      anecdotes[1](anecdotes[0].filter((anecdote) => anecdote.id !== id));
+    }
+  };
+
   const showToggle = (index) => {
     if (disPlay === index) {
       setDisPlay(null);
@@ -47,6 +58,11 @@ const AnecdoteList = () => {
                   likes:{anecdote.likes}
                   <button onClick={() => increaseLike(anecdote.id)}>
                     like
+                  </button>
+                </div>
+                <div>
+                  <button onClick={() => removeAnecdote(anecdote.id)}>
+                    Delete
                   </button>
                 </div>
               </div>

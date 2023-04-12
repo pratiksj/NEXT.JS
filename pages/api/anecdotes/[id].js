@@ -42,6 +42,18 @@ export default async (req, res) => {
         res.status(400).json({ success: false });
       }
       break;
+    case "DELETE":
+      try {
+        const deletedAnecdote = await Anecdote.deleteOne({ _id: id });
+        if (!deletedAnecdote) {
+          return res.status(400).json({ success: false });
+        }
+        res
+          .status(200)
+          .json({ success: true, message: "deleted successfully" });
+      } catch (error) {
+        res.status(400).json({ success: false });
+      }
 
     default:
       res.status(400).json({ success: false });
