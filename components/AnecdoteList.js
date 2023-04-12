@@ -3,9 +3,24 @@ import Link from "next/link";
 import AnecdoteContext from "@/context/AnecdoteContext";
 import React from "react";
 import { useContext, useState } from "react";
+import anecdoteService from "@/services/anecdote";
 
 const AnecdoteList = () => {
   const [disPlay, setDisPlay] = useState(null);
+  const anecdotes = useContext(AnecdoteContext);
+
+  const increaseLike = async (id) => {
+    const updateLike = anecdotes[0].find((blog) => blog.id === id);
+    const updatedLike = {
+      ...updateLike,
+      likes: updateLike.likes + 1,
+    };
+    const response = await anecdoteService.update(id, updatedLike);
+    console.log(response, "i am response");
+    anecdotes[1](
+      anecdotes[0].map((anecdote) => (anecdote.id === id ? response : anecdote))
+    );
+  };
   const showToggle = (index) => {
     if (disPlay === index) {
       setDisPlay(null);
@@ -13,7 +28,6 @@ const AnecdoteList = () => {
       setDisPlay(index);
     }
   };
-  const anecdotes = useContext(AnecdoteContext);
 
   return (
     <div>
@@ -29,7 +43,12 @@ const AnecdoteList = () => {
               <div>
                 <div>{anecdote.author}</div>
                 <div>{anecdote.info}</div>
-                <div>{anecdote.likes}</div>
+                <div>
+                  likes:{anecdote.likes}
+                  <button onClick={() => increaseLike(anecdote.id)}>
+                    like
+                  </button>
+                </div>
               </div>
             )}
           </li>
